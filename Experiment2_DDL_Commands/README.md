@@ -104,125 +104,206 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
+
+Create a table named Employees with the following constraints:
+
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE Employees(
+EmployeeID INTEGER PRIMARY KEY,
+FirstName TEXT NOT NULL,
+LastName TEXT NOT NULL,
+Email TEXT UNIQUE,
+Salary INTEGER CHECK(SALARY>0),
+DepartmentID INTEGER,
+FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+![image](https://github.com/user-attachments/assets/e9f1f6a1-d785-4347-9df9-84359bf2c216)
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+
+Create a table named Products with the following constraints:
+
+ProductID should be the primary key.
+ProductName should be NOT NULL.
+Price is of real datatype and should be greater than 0.
+Stock is of integer datatype and should be greater than or equal to 0.
+
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Products(
+ProductID INTEGER PRIMARY KEY,
+ProductName TEXT NOT NULL,
+Price REAL CHECK(Price>0),
+Stock INTEGER CHECK(Stock>0)
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+![image](https://github.com/user-attachments/assets/26ffd3c7-b5c9-476e-9a35-3b61cb74c7fe)
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL query to add a column named Date_of_birth as Date in the Student_details table.
 
 ```sql
--- Paste your SQL code below for Question 3
+ALTER TABLE Student_details
+ADD COLUMN Date_of_birth Date
 ```
 
 **Output:**
-
-![Output3](output.png)
+![image](https://github.com/user-attachments/assets/0e30cb33-5edb-4b0e-9e8f-ee7592379db7)
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write an SQL query to add a new column salary of type INTEGER to the Employees table, with a CHECK constraint that ensures the value in this column is greater than 0.
 
 ```sql
--- Paste your SQL code below for Question 4
+ALTER TABLE Employees
+ADD COLUMN salary INTEGER CHECK(salary>0)
 ```
 
 **Output:**
 
-![Output4](output.png)
+![image](https://github.com/user-attachments/assets/db4c16d8-a006-4c86-848d-f30fdb769612)
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Insert the following employees into the Employee table:
+
+EmployeeID  Name        Position    Department  Salary
+----------  ----------  ----------  ----------  ----------
+2           John Smith  Developer   IT          75000
+3           Anna Bell   Designer    Marketing   68000
 
 ```sql
--- Paste your SQL code below for Question 5
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)VALUES(2,'John Smith','Developer','IT',75000);
+INSERT INTO Employee(EmployeeID,Name,Position,Department,Salary)VALUES(3,'Anna Bell','Designer','Marketing',68000
 ```
 
 **Output:**
-
-![Output5](output.png)
+![image](https://github.com/user-attachments/assets/ac6715a3-ea4e-4d31-b508-7ced3142a38b)
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a table named Departments with the following columns:
+
+DepartmentID as INTEGER
+DepartmentName as TEXT
 
 ```sql
--- Paste your SQL code below for Question 6
+CREATE TABLE Departments(
+DepartmentID INTEGER,
+DepartmentName TEXT
+);
 ```
 
 **Output:**
 
-![Output6](output.png)
+![image](https://github.com/user-attachments/assets/6dd06cca-291c-457e-b674-402e052d91bc)
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
 
 ```sql
--- Paste your SQL code below for Question 7
+CREATE TABLE item(
+item_id TEXT PRIMARY KEY,
+item_desc TEXT NOT NULL,
+rate INTEGER NOT NULL,
+icom_id TEXT,
+FOREIGN KEY (icom_id) REFERENCES company(com_id)
+ON UPDATE CASCADE
+ON DELETE CASCADE
+CHECK(LENGTH(icom_id)=4)
+);
 ```
 
 **Output:**
 
-![Output7](output.png)
+![image](https://github.com/user-attachments/assets/e72dcac1-338e-4198-9b67-017eb3b42b1a)
+
 
 **Question 8**
 ---
--- Paste Question 8 here
+Insert all customers from Old_customers into Customers
+
+Table attributes are CustomerID, Name, Address, Email
 
 ```sql
--- Paste your SQL code below for Question 8
+INSERT INTO Customers(CustomerID, Name, Address, Email)
+SELECT CustomerID, Name, Address, Email
+From Old_customers
 ```
 
 **Output:**
 
-![Output8](output.png)
+![image](https://github.com/user-attachments/assets/ffcbdab8-aa68-4ab2-a2ef-83987a1099a8)
 
 **Question 9**
 ---
--- Paste Question 9 here
+Insert the below data into the Books table, allowing the Publisher and Year columns to take their default values.
 
+ISBN             Title                 Author
+---------------  --------------------  ---------------
+978-6655443321   Big Data Analytics    Karen Adams
+
+Note: The Publisher and Year columns will use their default values.
+ 
 ```sql
--- Paste your SQL code below for Question 9
+INSERT INTO Books ('ISBN','TITLE','Author')VALUES('978-6655443321','Big Data Analytics','Karen Adams');
 ```
 
 **Output:**
 
-![Output9](output.png)
+
+![image](https://github.com/user-attachments/assets/f5862001-65c6-40f3-8277-f0f0f08447eb)
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave
 
 ```sql
--- Paste your SQL code below for Question 10
+CREATE TABLE Attendance(
+AttendanceID INTEGER PRIMARY KEY,
+EmployeeID INTEGER, 
+AttendanceDate DATE,
+Status TEXT CHECK(STATUS IN ('Present','Absent','Leave')),
+FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+
+);
 ```
 
 **Output:**
 
-![Output10](output.png)
-
+![image](https://github.com/user-attachments/assets/4fdebff6-87b0-4d78-bf30-62b9ec5b7989)
 
 ## RESULT
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
